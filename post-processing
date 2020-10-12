@@ -1,0 +1,9 @@
+mkdir -p output
+sed -e "s/[(,)]/ /g #" postProcessing/computeForcesCoeff/500/forces* 1> postProcessing/computeForcesCoeff/500/forcesCleanOld.txt
+sed '1d' postProcessing/computeForcesCoeff/500/forcesCleanOld.txt > postProcessing/computeForcesCoeff/500/forcesCleanOld2.txt
+tail -n +3 postProcessing/computeForcesCoeff/500/forcesCleanOld2.txt > output/forcesClean.txt
+rm -r postProcessing/computeForcesCoeff/500/forcesCleanOld*
+grep -v '^#' output/forcesClean.txt > output/forcesWS.txt
+sed -e 's/\s\+/,/g' output/forcesWS.txt >> output/forces.txt
+
+
